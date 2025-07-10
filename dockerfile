@@ -1,11 +1,12 @@
-FROM lscr.io/linuxserver/code-server:latest
+FROM ubuntu:22.04
 
-# Install Python and Pip
-USER root
-RUN apt-get update \
-    && apt-get install -y python3 python3-pip python3-venv \
-    && ln -s /usr/bin/python3 /usr/bin/python \
-    && ln -s /usr/bin/pip3 /usr/bin/pip
+# Install code-server manually and Python
+RUN apt-get update && \
+    apt-get install -y curl python3 python3-pip python3-venv && \
+    curl -fsSL https://code-server.dev/install.sh | sh
 
-# Switch back to normal user if needed
-USER abc
+# Optional symlinks
+RUN ln -s /usr/bin/python3 /usr/bin/python && \
+    ln -s /usr/bin/pip3 /usr/bin/pip
+
+EXPOSE 8443
