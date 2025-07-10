@@ -13,7 +13,7 @@ services:
       - ./config:/config                  # code-server config + extensions
       - /home/pi/my_python_project:/config/workspace  # your project folder
     ports:
-      - "8443:8443"
+      - "8443:8080"
     restart: unless-stopped
     entrypoint: /bin/sh
     command: -c "apk add --no-cache python3 py3-pip && /init"
