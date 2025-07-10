@@ -2,17 +2,18 @@ version: "3.8"
 
 services:
   code-server:
-    build:
-      context: .   # Looks for Dockerfile in the same folder
+    image: lscr.io/linuxserver/code-server:latest
     container_name: code-server
     environment:
-      - PUID=1000         # User ID on your Pi (check with `id -u`)
-      - PGID=1000         # Group ID on your Pi (check with `id -g`)
-      - TZ=Etc/UTC        # Set your timezone
-      - PASSWORD=yourpassword  # Or use HASHED_PASSWORD for more security
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - PASSWORD=Ch35t3r!
     volumes:
       - ./config:/config                  # code-server config + extensions
       - /home/pi/my_python_project:/config/workspace  # your project folder
     ports:
       - "8443:8443"
     restart: unless-stopped
+    entrypoint: /bin/sh
+    command: -c "apk add --no-cache python3 py3-pip && /init"
