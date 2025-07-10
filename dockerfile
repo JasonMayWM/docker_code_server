@@ -6,7 +6,9 @@ RUN apt-get update && \
     curl -fsSL https://code-server.dev/install.sh | sh
 
 # Optional symlinks
-RUN ln -s /usr/bin/python3 /usr/bin/python && \
+RUN rm -f /usr/bin/python /usr/bin/pip && \
+    ln -s /usr/bin/python3 /usr/bin/python && \
     ln -s /usr/bin/pip3 /usr/bin/pip
+
 
 EXPOSE 8443
