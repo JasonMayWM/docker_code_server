@@ -3,7 +3,7 @@ FROM ubuntu:22.04
 # Install code-server manually and Python
 RUN apt-get update && \
     apt-get install -y curl python3 python3-pip python3-venv && \
-    curl -fsSL https://code-server.dev/install.sh | sh
+    # curl -fsSL https://code-server.dev/install.sh | sh
 
 # Optional symlinks
 RUN rm -f /usr/bin/python /usr/bin/pip && \
