@@ -9,11 +9,12 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
       - PASSWORD=Ch35t3r!
+      - SUDO_PASSWORD=password #optional
     volumes:
       - ./config:/config                  # code-server config + extensions
       - /home/pi/my_python_project:/config/workspace  # your project folder
     ports:
-      - "8443:8080"
+      - 8443:8443
     restart: unless-stopped
     entrypoint: /bin/sh
     command: -c "apk add --no-cache python3 py3-pip && /init"
