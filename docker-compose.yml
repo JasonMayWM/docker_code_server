@@ -9,7 +9,7 @@ services:
       - TZ=Europe/London   # Set your timezone
       - PASSWORD=Ch35t3r!  # Or use HASHED_PASSWORD
     ports:
-      - 8443:8443
+      - 8443:8080
     volumes:
       - ./config:/config                  # code-server config + extensions
       - /home/pi/my_python_project:/config/workspace  # your project folder
