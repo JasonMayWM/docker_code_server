@@ -2,6 +2,7 @@ version: "2.1"
 services:
   code-server:
     build: .
+    image: codercom/code-server:latest
     container_name: code-server
     environment:
       - PUID=1000          # Replace with your Pi user ID (id -u pi)
@@ -9,7 +10,7 @@ services:
       - TZ=Europe/London   # Set your timezone
       - PASSWORD=Ch35t3r!  # Or use HASHED_PASSWORD
     ports:
-      - 8443:8080
+      - 8443:8443
     volumes:
       - ./config:/config                  # code-server config + extensions
       - /home/pi/my_python_project:/config/workspace  # your project folder
