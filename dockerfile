@@ -1,14 +1,13 @@
-FROM ubuntu:22.04
+# For Raspberry Pi — auto resolves ARM arch
+FROM lscr.io/linuxserver/code-server:latest
 
-# Install code-server manually and Python
-RUN apt-get update && \
-    apt-get install -y curl python3 python3-pip python3-venv && \
-    # curl -fsSL https://code-server.dev/install.sh | sh
+# Add Python and pip for Alpine base image
+RUN apk add --no-cache python3 py3-pip
 
-# Optional symlinks
-RUN rm -f /usr/bin/python /usr/bin/pip && \
-    ln -s /usr/bin/python3 /usr/bin/python && \
-    ln -s /usr/bin/pip3 /usr/bin/pip
+# Or, if using Ubuntu base:
+# FROM lscr.io/linuxserver/code-server:ubuntu
+# RUN apt-get update && apt-get install -y python3 python3-pip
 
+# Optional: confirm versions at build time
+RUN python3 --version && pip3 --version
 
-EXPOSE 8443
