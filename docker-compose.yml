@@ -1,0 +1,16 @@
+version: "2.1"
+services:
+  code-server:
+    build: .
+    container_name: code-server
+    environment:
+      - PUID=1000          # Replace with your Pi user ID (id -u pi)
+      - PGID=1000          # Replace with your Pi group ID (id -g pi)
+      - TZ=Europe/London   # Set your timezone
+      - PASSWORD=your_password_here  # Or use HASHED_PASSWORD
+    ports:
+      - 8443:8443
+    volumes:
+      - ./config:/config                  # code-server config + extensions
+      - /home/pi/my_python_project:/config/workspace  # your project folder
+    restart: unless-stopped
